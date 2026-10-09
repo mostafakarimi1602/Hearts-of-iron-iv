@@ -1,0 +1,65 @@
+add_namespace = pak
+
+# ==========================================
+# رویداد برای عربستان سعودی (SAU)
+# ==========================================
+country_event = {
+    id = pak.1
+    title = pak.1.t
+    desc = pak.1.d
+    picture = GFX_report_event_generic_alliance
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = pak.1.a # پذیرش پیمان
+        ai_chance = {
+            base = 85
+            modifier = {
+                add = 10
+                has_opinion = { target = PAK value > 50 }
+            }
+        }
+        # عربستان سعودی به اتحاد نظامی پاکستان می‌پیوندد
+        add_to_faction = PAK
+    }
+
+    option = {
+        name = pak.1.b # رد پیمان
+        ai_chance = { base = 15 }
+        # عربستان سعودی از پیوستن خودداری می‌کند
+        add_opinion = { target = PAK modifier = -30 }
+    }
+}
+
+# ==========================================
+# رویداد برای ترکیه (TUR)
+# ==========================================
+country_event = {
+    id = pak.2
+    title = pak.2.t
+    desc = pak.2.d
+    picture = GFX_report_event_generic_alliance
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = pak.2.a # پذیرش پیمان
+        ai_chance = {
+            base = 80
+            modifier = {
+                add = 15
+                has_opinion = { target = PAK value > 50 }
+            }
+        }
+        # ترکیه به اتحاد نظامی پاکستان می‌پیوندد
+        add_to_faction = PAK
+    }
+
+    option = {
+        name = pak.2.b # رد پیمان
+        ai_chance = { base = 20 }
+        # ترکیه از پیوستن خودداری می‌کند
+        add_opinion = { target = PAK modifier = -30 }
+    }
+}
