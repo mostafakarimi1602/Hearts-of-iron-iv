@@ -1,0 +1,12 @@
+ideas = {
+    country = {
+        PAK_islamic_republic_idea = {
+            picture = generic_islamic_republic
+            allowed = { always = yes }
+            modifier = {
+                stability_factor = 0.1
+                political_power_gain = 0.1
+            }
+        }
+    }
+}
