@@ -1,0 +1,566 @@
+focus_tree = {
+    id = pak_focus_tree
+    country = {
+        factor = 0
+        modifier = {
+            add = 10
+            tag = PAK
+        }
+    }
+
+    # ==========================================
+    # Root Focus
+    # ==========================================
+
+    focus = {
+        id = PAK_rebuild_nation
+        icon = GFX_goal_generic_national_unity
+        x = 0
+        y = 0
+        cost = 10
+        completion_reward = {
+            add_political_power = 120
+        }
+    }
+
+    # ==========================================
+    # Political Branch (Left)
+    # ==========================================
+
+    focus = {
+        id = PAK_islamic_republic
+        icon = GFX_goal_generic_political_pressure
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = -2
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_ideas = PAK_islamic_republic_idea
+        }
+    }
+
+    focus = {
+        id = PAK_secular_republic
+        icon = GFX_goal_generic_democratic_reform
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = 2
+        y = 1
+        cost = 10
+        mutually_exclusive = { focus = PAK_islamic_republic }
+        completion_reward = {
+            add_ideas = PAK_secular_republic_idea
+        }
+    }
+
+    focus = {
+        id = PAK_empower_military
+        icon = GFX_goal_generic_military_government
+        prerequisite = { focus = PAK_islamic_republic }
+        relative_position_id = PAK_islamic_republic
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            army_experience = 25
+            add_ideas = PAK_military_establishment
+        }
+    }
+
+    # ==========================================
+    # Industrial & Research Branch (Right)
+    # ==========================================
+
+    focus = {
+        id = PAK_industrial_effort
+        icon = GFX_goal_generic_construct_civ_factory
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = 4
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_ideas = PAK_industrial_effort_idea
+        }
+    }
+
+    focus = {
+        id = PAK_foreign_investment
+        icon = GFX_goal_generic_foreign_capital
+        prerequisite = { focus = PAK_industrial_effort }
+        relative_position_id = PAK_industrial_effort
+        x = -1
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_political_power = 50
+            add_ideas = PAK_foreign_investment_idea
+        }
+    }
+
+    focus = {
+        id = PAK_self_reliance
+        icon = GFX_goal_generic_construct_military
+        prerequisite = { focus = PAK_industrial_effort }
+        relative_position_id = PAK_industrial_effort
+        x = 1
+        y = 1
+        cost = 10
+        mutually_exclusive = { focus = PAK_foreign_investment }
+        completion_reward = {
+            add_ideas = PAK_self_reliance_idea
+        }
+    }
+
+    focus = {
+        id = PAK_heavy_industry
+        icon = GFX_goal_generic_construct_heavy_industry
+        prerequisite = { focus = PAK_self_reliance }
+        relative_position_id = PAK_self_reliance
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_ideas = PAK_heavy_industry_idea
+            # Add factories to Pakistani states
+            442 = { add_building_construction = { type = industrial_complex level = 2 } }
+            440 = { add_building_construction = { type = industrial_complex level = 2 } }
+            987 = { add_building_construction = { type = arms_factory level = 2 } }
+            988 = { add_building_construction = { type = arms_factory level = 2 } }
+            444 = { add_building_construction = { type = industrial_complex level = 1 } }
+            443 = { add_building_construction = { type = arms_factory level = 1 } }
+        }
+    }
+
+    focus = {
+        id = PAK_expand_research
+        icon = GFX_goal_generic_scientific_exchange
+        prerequisite = { focus = PAK_heavy_industry }
+        relative_position_id = PAK_heavy_industry
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_research_slot = 1
+        }
+    }
+
+    focus = {
+        id = PAK_state_resources
+        icon = GFX_goal_generic_construct_infrastructure
+        prerequisite = { focus = PAK_expand_research }
+        relative_position_id = PAK_expand_research
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            # Add steel and oil to Pakistani states
+            442 = { add_resource = { type = steel amount = 24 } }
+            440 = { add_resource = { type = steel amount = 24 } }
+            987 = { add_resource = { type = oil amount = 16 } }
+            988 = { add_resource = { type = oil amount = 16 } }
+            444 = { add_resource = { type = steel amount = 12 } }
+            443 = { add_resource = { type = steel amount = 12 } }
+            445 = { add_resource = { type = oil amount = 8 } }
+            1012 = { add_resource = { type = steel amount = 8 } }
+        }
+    }
+
+    # ==========================================
+    # Military & Nuclear Branch (Far Right)
+    # ==========================================
+
+    focus = {
+        id = PAK_army_effort
+        icon = GFX_goal_generic_army_effort
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = 6
+        y = 1
+        cost = 10
+        completion_reward = {
+            army_experience = 25
+            add_ideas = PAK_army_effort_idea
+        }
+    }
+
+    focus = {
+        id = PAK_air_force_effort
+        icon = GFX_goal_generic_build_airforce
+        prerequisite = { focus = PAK_army_effort }
+        relative_position_id = PAK_army_effort
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            air_experience = 25
+            add_ideas = PAK_air_force_effort_idea
+        }
+    }
+
+    focus = {
+        id = PAK_nuclear_program
+        icon = GFX_goal_generic_nuclear_program
+        prerequisite = { focus = PAK_air_force_effort }
+        relative_position_id = PAK_air_force_effort
+        x = 0
+        y = 1
+        cost = 15
+        completion_reward = {
+            add_ideas = PAK_nuclear_program_idea
+            add_research_slot = 1
+        }
+    }
+
+    # ==========================================
+    # ISI Intelligence Branch
+    # ==========================================
+
+    focus = {
+        id = PAK_inter_services_intelligence
+        icon = GFX_goal_generic_intelligence_agency
+        prerequisite = { focus = PAK_army_effort }
+        relative_position_id = PAK_army_effort
+        x = -2
+        y = 1
+        cost = 10
+        completion_reward = {
+            if = {
+                limit = { has_dlc = "La Resistance" }
+                create_intelligence_agency = yes
+            }
+            add_ideas = PAK_isi_idea
+        }
+    }
+
+    focus = {
+        id = PAK_isi_expansion
+        icon = GFX_goal_generic_intelligence_operations
+        prerequisite = { focus = PAK_inter_services_intelligence }
+        relative_position_id = PAK_inter_services_intelligence
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            if = {
+                limit = { has_dlc = "La Resistance" }
+                add_operative_slot = 1
+            }
+            army_experience = 15
+        }
+    }
+
+    focus = {
+        id = PAK_isi_elite
+        icon = GFX_goal_generic_intelligence_operations
+        prerequisite = { focus = PAK_isi_expansion }
+        relative_position_id = PAK_isi_expansion
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            if = {
+                limit = { has_dlc = "La Resistance" }
+                add_operative_slot = 1
+                add_ideas = PAK_isi_elite_idea
+            }
+        }
+    }
+
+    focus = {
+        id = PAK_isi_network
+        icon = GFX_goal_generic_intelligence_operations
+        prerequisite = { focus = PAK_isi_elite }
+        relative_position_id = PAK_isi_elite
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            if = {
+                limit = { has_dlc = "La Resistance" }
+                add_ideas = PAK_isi_network_idea
+            }
+        }
+    }
+
+    # ==========================================
+    # Diplomacy & Faction Branch
+    # ==========================================
+
+    focus = {
+        id = PAK_saudi_turkey_pact
+        icon = GFX_goal_generic_alliance
+        prerequisite = { focus = PAK_islamic_republic }
+        relative_position_id = PAK_islamic_republic
+        x = 2
+        y = 1
+        cost = 15
+        available = {
+            has_government = fascism
+        }
+        completion_reward = {
+            create_faction = "PAK_islamic_alliance"
+            add_opinion = { target = SAU modifier = 100 }
+            add_opinion = { target = TUR modifier = 100 }
+            if = {
+                limit = { SAU = { is_in_faction = no } }
+                SAU = { country_event = { id = pak.1 days = 1 } }
+            }
+            if = {
+                limit = { TUR = { is_in_faction = no } }
+                TUR = { country_event = { id = pak.2 days = 1 } }
+            }
+        }
+    }
+
+    focus = {
+        id = PAK_iran_trade
+        icon = GFX_goal_generic_trade
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = -4
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_opinion = { target = PER modifier = 75 }
+            add_ideas = PAK_iran_trade_idea
+        }
+    }
+
+    focus = {
+        id = PAK_iran_alliance
+        icon = GFX_goal_generic_alliance
+        prerequisite = { focus = PAK_iran_trade }
+        relative_position_id = PAK_iran_trade
+        x = 0
+        y = 1
+        cost = 15
+        completion_reward = {
+            add_opinion = { target = PER modifier = 100 }
+            create_faction = "PAK_persian_alliance"
+        }
+    }
+
+    # ==========================================
+    # Alternate History & War Branch (Far Left)
+    # ==========================================
+
+    focus = {
+        id = PAK_balochistan_crisis
+        icon = GFX_goal_generic_insurgency
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = -6
+        y = 1
+        cost = 10
+        available = {
+            has_stability > 0.4
+        }
+        completion_reward = {
+            add_ideas = PAK_balochistan_crisis_idea
+        }
+    }
+
+    focus = {
+        id = PAK_crush_insurgency
+        icon = GFX_goal_generic_military_offensive
+        prerequisite = { focus = PAK_balochistan_crisis }
+        relative_position_id = PAK_balochistan_crisis
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_political_power = 60
+            add_stability = 0.1
+        }
+    }
+
+    focus = {
+        id = PAK_grant_autonomy
+        icon = GFX_goal_generic_democratic_reform
+        prerequisite = { focus = PAK_balochistan_crisis }
+        relative_position_id = PAK_balochistan_crisis
+        x = 0
+        y = 2
+        cost = 10
+        mutually_exclusive = { focus = PAK_crush_insurgency }
+        completion_reward = {
+            add_stability = 0.15
+            add_political_power = -50
+        }
+    }
+
+    focus = {
+        id = PAK_kashmir_question
+        icon = GFX_goal_generic_territorial_claim
+        prerequisite = { focus = PAK_empower_military }
+        relative_position_id = PAK_empower_military
+        x = 0
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_ideas = PAK_kashmir_claim_idea
+            # Add claims on Kashmir states
+            787 = { add_state_claim = PAK }
+            441 = { add_state_claim = PAK }
+        }
+    }
+
+    focus = {
+        id = PAK_operation_grand_slam
+        icon = GFX_goal_generic_war_with_india
+        prerequisite = { focus = PAK_kashmir_question }
+        relative_position_id = PAK_kashmir_question
+        x = 0
+        y = 1
+        cost = 15
+        completion_reward = {
+            army_experience = 50
+            add_ideas = PAK_war_effort_idea
+            # Automatically declare war on India for Kashmir
+            IND = { declare_war_on = { target = PAK type = annex_everything } }
+        }
+    }
+
+    focus = {
+        id = PAK_invade_afghanistan
+        icon = GFX_goal_generic_military_offensive
+        prerequisite = { focus = PAK_army_effort }
+        relative_position_id = PAK_army_effort
+        x = 2
+        y = 1
+        cost = 15
+        available = {
+            has_war = no
+        }
+        completion_reward = {
+            create_wargoal = {
+                target = AFG
+                type = annex_everything
+            }
+            army_experience = 25
+        }
+    }
+
+    focus = {
+        id = PAK_invade_india
+        icon = GFX_goal_generic_war_with_india
+        prerequisite = { focus = PAK_operation_grand_slam }
+        relative_position_id = PAK_operation_grand_slam
+        x = 0
+        y = 1
+        cost = 15
+        completion_reward = {
+            create_wargoal = {
+                target = IND
+                type = annex_everything
+            }
+            army_experience = 50
+            add_ideas = PAK_total_war_idea
+        }
+    }
+
+    # ==========================================
+    # Additional Suggested Focuses
+    # ==========================================
+
+    focus = {
+        id = PAK_develop_karachi
+        icon = GFX_goal_generic_construct_civ_factory
+        prerequisite = { focus = PAK_industrial_effort }
+        relative_position_id = PAK_industrial_effort
+        x = 3
+        y = 1
+        cost = 10
+        completion_reward = {
+            442 = { add_building_construction = { type = industrial_complex level = 3 } }
+            442 = { add_extra_state_shared_building_slots = 2 }
+        }
+    }
+
+    focus = {
+        id = PAK_military_academy
+        icon = GFX_goal_generic_military_academy
+        prerequisite = { focus = PAK_army_effort }
+        relative_position_id = PAK_army_effort
+        x = -2
+        y = 2
+        cost = 10
+        completion_reward = {
+            army_experience = 35
+            add_ideas = PAK_military_academy_idea
+        }
+    }
+
+    focus = {
+        id = PAK_naval_expansion
+        icon = GFX_goal_generic_naval_effort
+        prerequisite = { focus = PAK_army_effort }
+        relative_position_id = PAK_army_effort
+        x = 2
+        y = 2
+        cost = 10
+        completion_reward = {
+            navy_experience = 25
+            add_ideas = PAK_naval_expansion_idea
+        }
+    }
+
+    focus = {
+        id = PAK_propaganda_effort
+        icon = GFX_goal_generic_propaganda
+        prerequisite = { focus = PAK_islamic_republic }
+        relative_position_id = PAK_islamic_republic
+        x = -2
+        y = 1
+        cost = 10
+        completion_reward = {
+            add_stability = 0.1
+            add_war_support = 0.1
+        }
+    }
+
+    focus = {
+        id = PAK_china_relations
+        icon = GFX_goal_generic_improve_relations
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = -4
+        y = 2
+        cost = 10
+        completion_reward = {
+            add_opinion = { target = CHI modifier = 75 }
+            add_ideas = PAK_china_relations_idea
+        }
+    }
+
+    focus = {
+        id = PAK_usa_relations
+        icon = GFX_goal_generic_improve_relations
+        prerequisite = { focus = PAK_rebuild_nation }
+        relative_position_id = PAK_rebuild_nation
+        x = 4
+        y = 2
+        cost = 10
+        completion_reward = {
+            add_opinion = { target = USA modifier = 75 }
+            add_ideas = PAK_usa_relations_idea
+        }
+    }
+
+    focus = {
+        id = PAK_claim_bangladesh
+        icon = GFX_goal_generic_territorial_claim
+        prerequisite = { focus = PAK_empower_military }
+        relative_position_id = PAK_empower_military
+        x = 2
+        y = 1
+        cost = 15
+        completion_reward = {
+            add_ideas = PAK_bangladesh_claim_idea
+            # Add claims on Bangladesh states (East Bengal)
+            442 = { add_state_claim = PAK }
+        }
+    }
+}
